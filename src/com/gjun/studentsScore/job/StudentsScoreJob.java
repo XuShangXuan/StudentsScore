@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
+import com.gjun.studentsScore.model.StudentsReport;
 import com.gjun.studentsScore.model.StudentsScore;
 import com.gjun.studentsScore.service.StudentsScoreService;
 import com.gjun.studentsScore.util.SortUtil;
@@ -13,30 +15,32 @@ public class StudentsScoreJob {
 
 	public static void main(String[] args) {
 
+		// 準備要讀取的原始csv檔的路徑
 		String fileStudentsScoreDataPath = System.getProperty("user.dir")+ "/src/com/gjun/studentsScore/StudentsScoreData.csv";
 		Path filePath = Paths.get(fileStudentsScoreDataPath);
-		
+
+		// 準備要輸出的經過計算後csv檔的路徑
 		String fileStudentsScoreResuletPath = System.getProperty("user.dir")+ "/src/com/gjun/studentsScore/StudentsScoreResulet.csv";
 		Path targetPath = Paths.get(fileStudentsScoreResuletPath);
 
-		// Step1:使用File輸入串流將來源檔資料讀出
-		if (Files.exists(filePath)) {
+		if (Files.exists(filePath)) {// 確認csv檔是否存在
 
-			StudentsScoreService service = new StudentsScoreService();
+			StudentsReport studentsReport = new StudentsReport();// 用於儲存及傳遞成績單的資料
 
-			List<StudentsScore> studentsScoreDatas;
+			StudentsScoreService service = new StudentsScoreService();// 需要呼叫StudentsScoreService這個class的讀取和計算,和輸出的method
+
 			try {
-				
-				studentsScoreDatas = service.inputStudentsScoreData(filePath);
-				// Step2:計算每一筆學生成績的總分與平均,並存入collection
 
-				if (studentsScoreDatas != null && studentsScoreDatas.size() > 0) {
-					// Step3:將collection裡的元素依平均分數降幕排序
-					SortUtil.sortStudentsScoreByAverage(studentsScoreDatas);
-					// Step4:將處理好的collection使用File輸出串流,將資料產出至結果檔StudentsScoreResulet.csv
-					service.outputStudentsScoreData(targetPath, studentsScoreDatas);
+				studentsReport = service.inputStudentsScoreData(filePath);// 讀取並計算每一筆學生成績的總分與平均
+
+				if (studentsReport != null && studentsReport.getStudentsScoreData().size() > 0) {
+
+					SortUtil.sortStudentsScoreByAverage(studentsReport);// 將學生成績進行排序
+
+					service.outputStudentsScoreData(targetPath, studentsReport);//輸出經過計算後的學生成績單
+
 				}
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
