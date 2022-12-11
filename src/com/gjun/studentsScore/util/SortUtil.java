@@ -11,7 +11,7 @@ public class SortUtil {
 
 	public static void sortStudentsScoreByAverage(StudentsReport studentsScoreDatas) {
 
-		Comparator<StudentsScore> comparestudentsScore = new Comparator<StudentsScore>() {// 實作排序的規則
+		Comparator<StudentsScore> comparestudentsScore = new Comparator<StudentsScore>() {// 匿名類別實作排序的規則
 			@Override
 			public int compare(StudentsScore s1, StudentsScore s2) {
 
