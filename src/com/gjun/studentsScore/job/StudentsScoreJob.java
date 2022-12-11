@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 import com.gjun.studentsScore.model.StudentsReport;
-import com.gjun.studentsScore.model.StudentsScore;
 import com.gjun.studentsScore.service.StudentsScoreService;
 import com.gjun.studentsScore.util.SortUtil;
 
@@ -16,11 +14,11 @@ public class StudentsScoreJob {
 	public static void main(String[] args) {
 
 		// 準備要讀取的原始csv檔的路徑
-		String fileStudentsScoreDataPath = System.getProperty("user.dir")+ "/src/com/gjun/studentsScore/StudentsScoreData.csv";
+		String fileStudentsScoreDataPath = System.getProperty("user.dir") + "/src/com/gjun/studentsScore/StudentsScoreData.csv";
 		Path filePath = Paths.get(fileStudentsScoreDataPath);
 
 		// 準備要輸出的經過計算後csv檔的路徑
-		String fileStudentsScoreResuletPath = System.getProperty("user.dir")+ "/src/com/gjun/studentsScore/StudentsScoreResulet.csv";
+		String fileStudentsScoreResuletPath = System.getProperty("user.dir") + "/src/com/gjun/studentsScore/StudentsScoreResulet.csv";
 		Path targetPath = Paths.get(fileStudentsScoreResuletPath);
 
 		if (Files.exists(filePath)) {// 確認csv檔是否存在
@@ -37,7 +35,7 @@ public class StudentsScoreJob {
 
 					SortUtil.sortStudentsScoreByAverage(studentsReport);// 將學生成績進行排序
 
-					service.outputStudentsScoreData(targetPath, studentsReport);//輸出經過計算後的學生成績單
+					service.outputStudentsScoreData(targetPath, studentsReport);// 輸出經過計算後的學生成績單
 
 				}
 
