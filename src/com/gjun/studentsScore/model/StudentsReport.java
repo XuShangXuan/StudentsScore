@@ -6,7 +6,7 @@ public class StudentsReport {
 
 	private String reportTitle;
 
-	private  List<StudentsScore> studentsScoreData;
+	private List<StudentsScore> studentsScoreData;
 
 	public String getReportTitle() {
 		return reportTitle + ",總分,平均";
