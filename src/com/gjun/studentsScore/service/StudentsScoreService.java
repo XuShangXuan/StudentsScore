@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.gjun.studentsScore.model.StudentsReport;
@@ -14,14 +13,6 @@ import com.gjun.studentsScore.model.StudentsScore;
 
 public class StudentsScoreService {
 
-	/**
-	 * Step1:使用File輸入串流將來源檔資料讀出StudentsScoreData.csv <br/>
-	 * Step2:計算每一筆學生成績的總分與平均,並存入collection
-	 * 
-	 * @param fileData
-	 * @return List<StudentsScore>
-	 * @throws IOException
-	 */
 	public StudentsReport inputStudentsScoreData(Path filePath) throws IOException {
 
 		StudentsReport studentsReport = new StudentsReport();
@@ -69,12 +60,6 @@ public class StudentsScoreService {
 		return studentsReport;
 	}
 
-	/**
-	 * info:將處理好的collection使用File輸出串流,將資料產出至結果檔StudentsScoreResulet.csv
-	 * 
-	 * @param studentsReport
-	 * @throws IOException
-	 */
 	public void outputStudentsScoreData(Path targetPath, StudentsReport studentsReport) throws IOException {
 
 		List<StringBuilder> lines = new ArrayList<>(); // 輸出的資料只允許是集合<裡面放家族>的型態
