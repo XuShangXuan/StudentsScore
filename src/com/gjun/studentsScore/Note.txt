@@ -11,4 +11,3 @@ MOMO國小學生期未考成績表StudentsScoreData.csv
       請在程式碼可不變動的情況下動態達成此需求
 
 技術使用：JDK8
-考試時間：30分鐘
