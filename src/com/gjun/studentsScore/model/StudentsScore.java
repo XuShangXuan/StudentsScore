@@ -8,7 +8,7 @@ public class StudentsScore {
 	// 姓名
 	private String name;
 	// 各科分數
-	private List<String> score;
+	private List<String> score ;
 	// 總分
 	private String sumScore;
 	// 平均
