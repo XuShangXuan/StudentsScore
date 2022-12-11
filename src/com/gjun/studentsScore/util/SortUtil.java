@@ -2,7 +2,6 @@ package com.gjun.studentsScore.util;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 import com.gjun.studentsScore.model.StudentsReport;
 import com.gjun.studentsScore.model.StudentsScore;
